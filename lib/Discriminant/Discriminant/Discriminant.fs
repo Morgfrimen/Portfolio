@@ -49,8 +49,7 @@ module public IncompleteQuadraticEquation =
         let xSqrt = -c / a
         match xSqrt with
         |xSqrt when xSqrt >= double(0) -> ResultFullQuadraticEquation.DoobleX (System.Math.Sqrt(xSqrt),-System.Math.Sqrt(xSqrt)) 
-        |xSqrt when xSqrt < double(0) -> ResultFullQuadraticEquation.Empty
-        |_ -> raise(new Exception("Шаблон оказался с непредсказуемым случаем"))
+        |_ -> ResultFullQuadraticEquation.Empty
     
     //ax^2 + bx = 0
     let private C_Zero (a:double,b:double) : ResultFullQuadraticEquation =
