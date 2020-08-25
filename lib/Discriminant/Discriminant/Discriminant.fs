@@ -24,8 +24,8 @@ module internal Extension =
 
     let internal ReturnResult (res:ResultFullQuadraticEquation) : double[]=
         match res with
-        | ResultFullQuadraticEquation.DoobleX -> ReturnDobleArray (res.ToString())
-        | ResultFullQuadraticEquation.One -> ReturnDobleArray (res.ToString())
+        | ResultFullQuadraticEquation.DoobleX _ -> ReturnDobleArray (res.ToString())
+        | ResultFullQuadraticEquation.One _ -> ReturnDobleArray (res.ToString())
         | ResultFullQuadraticEquation.Empty -> null
 
 //Полные квадратные уравнения
