@@ -8,10 +8,10 @@ namespace QuadraticEquationTest
     {
         [Test]
         public void Test_FullQuadraticEquation_Dooble_Root()
-        {   
+        {
             //Первое уравнение
-            double[] exciptOne = {1, -8, 12};
-            double[] res1 = {2, 6};
+            double[] exciptOne = { 1, -8, 12 };
+            double[] res1 = { 2, 6 };
 
             //Получаем запись с решением уравнения
             var actual = FullQuadraticEquation.FullQuadraticEquationReqcord(exciptOne[0], exciptOne[1], exciptOne[2]);

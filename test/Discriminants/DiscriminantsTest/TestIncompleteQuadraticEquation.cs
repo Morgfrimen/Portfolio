@@ -1,6 +1,6 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using QuadraticEquation;
+using System;
 
 namespace QuadraticEquationTest
 {
@@ -14,7 +14,7 @@ namespace QuadraticEquationTest
             double b = 0;
             double c = -32;
 
-            var expected = new double[] {4, -4};
+            var expected = new double[] { 4, -4 };
 
             var actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
 
