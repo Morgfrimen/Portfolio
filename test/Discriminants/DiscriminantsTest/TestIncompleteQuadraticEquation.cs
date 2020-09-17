@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using QuadraticEquation;
 
-namespace TestFullQuadraticEquation
+namespace QuadraticEquationTest
 {
     [TestFixture]
     public class TestIncompleteQuadraticEquation
