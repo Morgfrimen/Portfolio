@@ -11,8 +11,4 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\lib\MyControl\MyControl\MyControl.csproj" />
-  </ItemGroup>
-
 </Project>
