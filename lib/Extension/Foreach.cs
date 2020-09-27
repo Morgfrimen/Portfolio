@@ -9,16 +9,16 @@ namespace System.Linq
         /// <summary>
         ///     Перебирает коллекцию IList и применяет к каждому элементу делегат Func
         /// </summary>
-        /// <typeparam name="T">TInput</typeparam>
-        /// <typeparam name="TQ">TOutput</typeparam>
+        /// <typeparam name="TInput">TInput</typeparam>
+        /// <typeparam name="TOutput">TOutput</typeparam>
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<TQ> Foreach<T, TQ>(this IList<T> enumerable, Func<T, TQ> action)
+        public static IEnumerable<TOutput> Foreach<TInput, TOutput>(this IList<TInput> enumerable, Func<TInput, TOutput> action)
         {
             EnumerableIsNull(enumerable: enumerable);
 
-            IList<TQ> newList = new List<TQ>();
+            IList<TOutput> newList = new List<TOutput>();
             for (int index = 0; index < enumerable.Count; index++)
                 newList.Add(item: action.Invoke(arg: enumerable[index: index]));
 
@@ -28,12 +28,12 @@ namespace System.Linq
         /// <summary>
         ///     Перебирает коллекцию IEnumerable и применяет к каждому элементу делегат Func
         /// </summary>
-        /// <typeparam name="T">TInput</typeparam>
-        /// <typeparam name="TQ">TOutput</typeparam>
+        /// <typeparam name="TInput">TInput</typeparam>
+        /// <typeparam name="TOutput">TOutput</typeparam>
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<TQ> Foreach<T, TQ>(this IEnumerable<T> enumerable, Func<T, TQ> action)
+        public static IEnumerable<TOutput> Foreach<TInput, TOutput>(this IEnumerable<TInput> enumerable, Func<TInput, TOutput> action)
         {
             return enumerable.ToList().Foreach(action: action);
         }
@@ -41,11 +41,11 @@ namespace System.Linq
         /// <summary>
         ///     Перебирает коллекцию IList и применяет к каждому элементу делегат Func
         /// </summary>
-        /// <typeparam name="T">TInput</typeparam>
+        /// <typeparam name="TInput">TInput</typeparam>
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<T> Foreach<T>(this IList<T> enumerable, Action<T> action)
+        public static IEnumerable<TInput> Foreach<TInput>(this IList<TInput> enumerable, Action<TInput> action)
         {
             EnumerableIsNull(enumerable: enumerable);
 
@@ -58,16 +58,16 @@ namespace System.Linq
         /// <summary>
         ///     Перебирает коллекцию IEnumerable и применяет к каждому элементу делегат Action
         /// </summary>
-        /// <typeparam name="T">TInput</typeparam>
+        /// <typeparam name="TInput">TInput</typeparam>
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<T> Foreach<T>(this IEnumerable<T> enumerable, Action<T> action)
+        public static IEnumerable<TInput> Foreach<TInput>(this IEnumerable<TInput> enumerable, Action<TInput> action)
         {
             return enumerable.ToList().Foreach(action: action);
         }
 
-        private static void EnumerableIsNull<T>(IEnumerable<T> enumerable)
+        private static void EnumerableIsNull<TInput>(IEnumerable<TInput> enumerable)
         {
             if (enumerable == null)
                 throw new ArgumentNullException(paramName: $"{_tag}:{nameof(Foreach)} -> enumerable is NULL");
