@@ -45,22 +45,22 @@ namespace ExtensionTest
 
             string res = extension <= linqSelect ? "Да" : "Нет";
             Console.WriteLine
-                (value: $"Лучше ли метод Extension от LINQ Select? {res}{Environment.NewLine}Время Extension = {extension} ; Время LINQ = {linqSelect}");
+                (value: $"Лучше ли метод Extension от LINQ Select? {res}{Environment.NewLine}Время Extension.Foreach = {extension} ; Время LINQ.Select = {linqSelect}");
 
             stopwatch.Start();
-            Assert.DoesNotThrow(code: () => listStr.ToList().ForEach(action: item => Console.Write(value: $"{item}; ")));
+            Assert.DoesNotThrow(code: () => listStr.ToList().ForEach(action: item => Console.Write(string.Empty)));
             stopwatch.Stop();
 
             TimeSpan forEach = stopwatch.Elapsed;
             stopwatch.Reset();
 
             stopwatch.Start();
-            Assert.DoesNotThrow(code: () => listStr.Foreach(action: item => Console.Write(value: $"{item}; ")));
+            Assert.DoesNotThrow(code: () => listStr.Foreach(action: item => Console.Write(string.Empty)));
             stopwatch.Stop();
 
             Console.Write(value: Environment.NewLine);
             res = stopwatch.Elapsed <= forEach ? "Да" : "Нет";
-            Console.WriteLine(value: $"Лучше ли в методе Action наш метод расширения? {res}{Environment.NewLine}Время ForEach : {forEach} ; Время Foreach : {stopwatch.Elapsed} ");
+            Console.WriteLine(value: $"Лучше ли в методе Action наш метод расширения? {res}{Environment.NewLine}Время List.ForEach : {forEach} ; Extension.Foreach : {stopwatch.Elapsed} ");
             stopwatch.Reset();
         }
     }
