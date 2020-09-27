@@ -8,8 +8,6 @@ namespace Extension
     /// </summary>
     public static class Extension
     {
-        public delegate Q ExtensionDelegateOutQ<T, Q>(T obj);
-
         /// <summary>
         ///     Перебирает коллекцию IList и применяет к каждому элементу делегат ExtensionDelegateOutQ
         /// </summary>
@@ -18,11 +16,11 @@ namespace Extension
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<TQ> Foreach<T, TQ>(this IList<T> enumerable, ExtensionDelegateOutQ<T, TQ> action)
+        public static IEnumerable<TQ> Foreach<T, TQ>(this IList<T> enumerable, Func<T, TQ> action)
         {
             IList<TQ> newList = new List<TQ>();
             for (int index = 0; index < enumerable.Count; index++)
-                newList.Add(item: action.Invoke(obj: enumerable[index: index]));
+                newList.Add(item: action.Invoke(enumerable[index: index]));
 
             return newList;
         }

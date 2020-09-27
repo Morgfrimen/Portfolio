@@ -14,8 +14,6 @@ namespace QuadraticEquationTest
             double b = -8;
             double c = 12;
 
-            double[] expected = {0, 0};
-
             Assert.Throws<Exception>
             (
                 code: () => IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord
