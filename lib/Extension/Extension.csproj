@@ -2,10 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Platforms>AnyCPU;x64</Platforms>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="System.Linq" Version="4.3.0" />
-	</ItemGroup>
 
 </Project>

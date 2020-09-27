@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
-namespace System.Linq
+[assembly:InternalsVisibleTo("ExtensionTest")]
+
+namespace Extension
 {
     public static class Enumerable
     {
@@ -67,9 +72,9 @@ namespace System.Linq
             return enumerable.ToList().Foreach(action: action);
         }
 
-        private static void EnumerableIsNull<TInput>(IEnumerable<TInput> enumerable)
+        internal static void EnumerableIsNull<TInput>(IEnumerable<TInput> enumerable)
         {
-            if (enumerable == null)
+            if (enumerable is null)
                 throw new ArgumentNullException(paramName: $"{_tag}:{nameof(Foreach)} -> enumerable is NULL");
         }
     }

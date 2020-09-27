@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Extension;
 using NUnit.Framework;
 
 namespace ExtensionTest
@@ -59,6 +60,9 @@ namespace ExtensionTest
             res = stopwatch.Elapsed <= forEach ? "Да" : "Нет";
             Console.WriteLine(value: $"Лучше ли в методе Action наш метод расширения? {res}{Environment.NewLine}Время List.ForEach : {forEach} ; Extension.Foreach : {stopwatch.Elapsed} ");
             stopwatch.Reset();
+
+            list = null;
+            Assert.Throws<ArgumentNullException>((() => Extension.Enumerable.EnumerableIsNull(list)));
         }
     }
 }
