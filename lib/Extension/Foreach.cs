@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-namespace Extension
+namespace System.Linq
 {
-    /// <summary>
-    ///     Класс расширений для удобства работы
-    /// </summary>
-    public static class Extension
+    public static class Enumerable
     {
+        private static readonly string _tag = nameof(Exception);
+
         /// <summary>
         ///     Перебирает коллекцию IList и применяет к каждому элементу делегат Func
         /// </summary>
@@ -19,6 +16,8 @@ namespace Extension
         /// <returns>Преобразованную коллекцию</returns>
         public static IEnumerable<TQ> Foreach<T, TQ>(this IList<T> enumerable, Func<T, TQ> action)
         {
+            EnumerableIsNull(enumerable: enumerable);
+
             IList<TQ> newList = new List<TQ>();
             for (int index = 0; index < enumerable.Count; index++)
                 newList.Add(item: action.Invoke(arg: enumerable[index: index]));
@@ -48,6 +47,8 @@ namespace Extension
         /// <returns>Преобразованную коллекцию</returns>
         public static IEnumerable<T> Foreach<T>(this IList<T> enumerable, Action<T> action)
         {
+            EnumerableIsNull(enumerable: enumerable);
+
             for (int index = 0; index < enumerable.Count; index++)
                 action.Invoke(obj: enumerable[index: index]);
 
@@ -64,6 +65,12 @@ namespace Extension
         public static IEnumerable<T> Foreach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             return enumerable.ToList().Foreach(action: action);
+        }
+
+        private static void EnumerableIsNull<T>(IEnumerable<T> enumerable)
+        {
+            if (enumerable == null)
+                throw new ArgumentNullException(paramName: $"{_tag}:{nameof(Foreach)} -> enumerable is NULL");
         }
     }
 }
