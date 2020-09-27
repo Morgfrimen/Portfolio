@@ -14,8 +14,6 @@ namespace ExtensionTest
         public void Foreach_Test()
         {
             Stopwatch stopwatch = new Stopwatch();
-            TimeSpan extension ;
-            TimeSpan linqSelect;
 
             IEnumerable<int> list = new List<int>
                 {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -26,13 +24,13 @@ namespace ExtensionTest
             IEnumerable<string> listStr = list.Foreach(action: item => item.ToString());
             IEnumerable<string> expectedStr = list.Foreach(action: item => item.ToString());
             CollectionAssert.AreEqual(expected: expectedStr, actual: listStr);
-           
+
             stopwatch.Start();
-            IEnumerable<int> test = list.Foreach(item => item * item);
+            IEnumerable<int> test = list.Foreach(action: item => item * item);
             CollectionAssert.AreEqual(expected: expected, actual: test);
             stopwatch.Stop();
 
-            extension = stopwatch.Elapsed;
+            TimeSpan extension = stopwatch.Elapsed;
             stopwatch.Reset();
 
             stopwatch.Start();
@@ -40,7 +38,7 @@ namespace ExtensionTest
             CollectionAssert.AreEqual(expected: expected, actual: test);
             stopwatch.Stop();
 
-            linqSelect = stopwatch.Elapsed;
+            TimeSpan linqSelect = stopwatch.Elapsed;
             stopwatch.Reset();
 
             string res = extension <= linqSelect ? "Да" : "Нет";
@@ -48,14 +46,14 @@ namespace ExtensionTest
                 (value: $"Лучше ли метод Extension от LINQ Select? {res}{Environment.NewLine}Время Extension.Foreach = {extension} ; Время LINQ.Select = {linqSelect}");
 
             stopwatch.Start();
-            Assert.DoesNotThrow(code: () => listStr.ToList().ForEach(action: item => Console.Write(string.Empty)));
+            Assert.DoesNotThrow(code: () => listStr.ToList().ForEach(action: item => Console.Write(value: string.Empty)));
             stopwatch.Stop();
 
             TimeSpan forEach = stopwatch.Elapsed;
             stopwatch.Reset();
 
             stopwatch.Start();
-            Assert.DoesNotThrow(code: () => listStr.Foreach(action: item => Console.Write(string.Empty)));
+            Assert.DoesNotThrow(code: () => listStr.Foreach(action: item => Console.Write(value: string.Empty)));
             stopwatch.Stop();
 
             Console.Write(value: Environment.NewLine);
