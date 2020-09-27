@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Extension;
@@ -31,6 +32,8 @@ namespace ExtensionTest
             CollectionAssert.AreEqual(expected: expectedStr, actual: listStr);
 
 #endregion
+
+            Assert.DoesNotThrow(()=> expected.Select(item => item.ToString()).ToList().ForEach(res => Console.Write($"{res} ")));
         }
     }
 }
