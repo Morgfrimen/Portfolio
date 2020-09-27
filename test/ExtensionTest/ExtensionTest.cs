@@ -1,12 +1,13 @@
+using Extension;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Extension;
-using NUnit.Framework;
 
 namespace ExtensionTest
 {
+    [TestFixture]
     public sealed class ExtensionTest
     {
         [Test]

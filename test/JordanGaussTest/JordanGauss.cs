@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace JordanGaussTest
 {
+    [TestFixture]
     public class JordanGauss
     {
         [Test]
