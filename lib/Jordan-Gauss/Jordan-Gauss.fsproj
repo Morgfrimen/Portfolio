@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Jordan_Gauss</RootNamespace>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>Jordan_Gauss</RootNamespace>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="Jordan_Gauss.fs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="Jordan_Gauss.fs" />
+	</ItemGroup>
 
 </Project>

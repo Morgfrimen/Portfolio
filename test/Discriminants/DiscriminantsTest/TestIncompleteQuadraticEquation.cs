@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using QuadraticEquation;
-using System;
 
 namespace QuadraticEquationTest
 {
@@ -8,60 +8,24 @@ namespace QuadraticEquationTest
     public class TestIncompleteQuadraticEquation
     {
         [Test]
-        public void Test_IncompleteQuadraticEquation_B_Zero()
+        public void Test_IncompleteQuadraticEquation_A_B_C_Not_Zero()
         {
-            double a = 2;
-            double b = 0;
-            double c = -32;
+            double a = 1;
+            double b = -8;
+            double c = 12;
 
-            var expected = new double[] { 4, -4 };
+            double[] expected = {0, 0};
 
-            var actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
-
-            Assert.IsTrue(actual.IsDoobleX);
-            CollectionAssert.AreEqual(IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c),
-                expected);
-
-            a = 2;
-            b = 0;
-            c = 8;
-
-            actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
-
-            Assert.IsTrue(actual.IsEmpty);
-            Assert.IsNull(IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c));
-        }
-
-        [Test]
-        public void Test_IncompleteQuadraticEquation_C_Zero()
-        {
-            double a = 3;
-            double b = -12;
-            double c = 0;
-
-            var expected = new double[] { 0, 4 };
-
-            var actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
-
-            Assert.IsTrue(actual.IsDoobleX);
-            CollectionAssert.AreEqual(IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c),
-                expected);
-        }
-
-        [Test]
-        public void Test_IncompleteQuadraticEquation_B_C_Zero()
-        {
-            double a = 7;
-            double b = 0;
-            double c = 0;
-
-            var expected = new double[] { 0, 0 };
-
-            var actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
-
-            Assert.IsTrue(actual.IsDoobleX);
-            CollectionAssert.AreEqual(IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c),
-                expected);
+            Assert.Throws<Exception>
+            (
+                code: () => IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord
+                    (a: a, b: b, c: c)
+            );
+            Assert.Throws<Exception>
+            (
+                code: () => IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c)
+            );
         }
 
         [Test]
@@ -71,27 +35,95 @@ namespace QuadraticEquationTest
             double b = 0;
             double c = 0;
 
-            var expected = new double[] { 0, 0 };
+            double[] expected = {0, 0};
 
-            var actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c);
+            ResultFullQuadraticEquation actual =
+                IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a: a, b: b, c: c);
 
-            Assert.IsTrue(actual.IsDoobleX);
-            CollectionAssert.AreEqual(IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c),
-                expected);
+            Assert.IsTrue(condition: actual.IsDoobleX);
+            CollectionAssert.AreEqual
+            (
+                expected: IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c),
+                actual: expected
+            );
         }
 
         [Test]
-        public void Test_IncompleteQuadraticEquation_A_B_C_Not_Zero()
+        public void Test_IncompleteQuadraticEquation_B_C_Zero()
         {
-            double a = 1;
-            double b = -8;
-            double c = 12;
+            double a = 7;
+            double b = 0;
+            double c = 0;
 
-            var expected = new double[] { 0, 0 };
+            double[] expected = {0, 0};
 
-            Assert.Throws<Exception>(() => IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a, b, c));
-            Assert.Throws<Exception>(() => IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray(a, b, c));
+            ResultFullQuadraticEquation actual =
+                IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a: a, b: b, c: c);
+
+            Assert.IsTrue(condition: actual.IsDoobleX);
+            CollectionAssert.AreEqual
+            (
+                expected: IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c),
+                actual: expected
+            );
         }
 
+        [Test]
+        public void Test_IncompleteQuadraticEquation_B_Zero()
+        {
+            double a = 2;
+            double b = 0;
+            double c = -32;
+
+            double[] expected = {4, -4};
+
+            ResultFullQuadraticEquation actual =
+                IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a: a, b: b, c: c);
+
+            Assert.IsTrue(condition: actual.IsDoobleX);
+            CollectionAssert.AreEqual
+            (
+                expected: IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c),
+                actual: expected
+            );
+
+            a = 2;
+            b = 0;
+            c = 8;
+
+            actual = IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord
+                (a: a, b: b, c: c);
+
+            Assert.IsTrue(condition: actual.IsEmpty);
+            Assert.IsNull
+            (
+                anObject: IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c)
+            );
+        }
+
+        [Test]
+        public void Test_IncompleteQuadraticEquation_C_Zero()
+        {
+            double a = 3;
+            double b = -12;
+            double c = 0;
+
+            double[] expected = {0, 4};
+
+            ResultFullQuadraticEquation actual =
+                IncompleteQuadraticEquation.IncompleteQuadraticEquationReqcord(a: a, b: b, c: c);
+
+            Assert.IsTrue(condition: actual.IsDoobleX);
+            CollectionAssert.AreEqual
+            (
+                expected: IncompleteQuadraticEquation.IncompleteQuadraticEquationDoubleArray
+                    (a: a, b: b, c: c),
+                actual: expected
+            );
+        }
     }
 }
