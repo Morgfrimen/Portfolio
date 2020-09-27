@@ -7,21 +7,23 @@ namespace Extension
     /// </summary>
     public static class Extension
     {
-        public delegate T ExtensionDelegate<T>(T obj);
+        public delegate Q ExtensionDelegateOutQ<T, Q>(T obj);
 
         /// <summary>
-        ///     Перебирает коллекцию IList и применяет к каждому элементу делегат ExtensionDelegate
+        ///     Перебирает коллекцию IList и применяет к каждому элементу делегат ExtensionDelegateOutQ
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">TInput</typeparam>
+        /// <typeparam name="Q">TOutput</typeparam>
         /// <param name="enumerable">Коллекция</param>
         /// <param name="action">Действие, которое нужно сделать с каждым элементом коллекции</param>
         /// <returns>Преобразованную коллекцию</returns>
-        public static IEnumerable<T> Foreach<T>(this IList<T> enumerable, ExtensionDelegate<T> action)
+        public static IEnumerable<Q> Foreach<T, Q>(this IList<T> enumerable, ExtensionDelegateOutQ<T, Q> action)
         {
+            IList<Q> newList = new List<Q>();
             for (int index = 0; index < enumerable.Count; index++)
-                enumerable[index: index] = action.Invoke(obj: enumerable[index: index]);
+                newList.Add(item: action.Invoke(obj: enumerable[index: index]));
 
-            return enumerable;
+            return newList;
         }
     }
 }
