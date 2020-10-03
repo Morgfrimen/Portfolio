@@ -5,7 +5,7 @@ namespace WpfApp.ViewModels
 {
     public sealed class MainViewModels : BaseViewModels
     {
-        private readonly RelayCommand _loadedMainWindow;
+        private readonly ICommand _loadedMainWindow;
 
         /// <summary>
         ///     Статус происходящей работы
@@ -14,14 +14,8 @@ namespace WpfApp.ViewModels
 
         public MainViewModels()
         {
-            _loadedMainWindow = new RelayCommand
-            (
-                action: () =>
-                {
-                    Status = "Сработало событие загрузки приложения!";
-                }
-            );
-            _loadedMainWindow.Execute(Status);
+            _loadedMainWindow = new LoadedMainWindow();
+            _loadedMainWindow.Execute(this);
         }
 
         /// <summary>
