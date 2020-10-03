@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfApp.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="800">
 
@@ -27,7 +28,24 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <Grid />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TreeView>
+                <TreeViewItem Header="Квадратные уравнения">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseDown">
+                            <i:InvokeCommandAction
+                                Command="{Binding PageDiscriminant}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TreeViewItem>
+            </TreeView>
+
+        </Grid>
 
 
         <StatusBar Grid.Row="1">

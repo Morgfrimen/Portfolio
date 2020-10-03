@@ -14,6 +14,7 @@ namespace WpfApp.ViewModels
         {
             ICommand loadedMainWindow = new LoadedMainWindow();
             loadedMainWindow.Execute(parameter: this);
+            PageDiscriminant = new NavigatePageDiscriminant();
         }
 
         /// <summary>
@@ -28,5 +29,10 @@ namespace WpfApp.ViewModels
                 OnPropertyChanged(propertyName: nameof(Status));
             }
         }
+
+        /// <summary>
+        ///     Команда с событием для выбора Page с квадратными уравнениями!
+        /// </summary>
+        public ICommand PageDiscriminant { get; }
     }
 }
