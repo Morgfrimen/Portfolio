@@ -31,8 +31,9 @@
 
 
         <StatusBar Grid.Row="1">
-            <TextBlock Text="{Binding Status, TargetNullValue=Приложение готово к работе}"
-                       Style="{StaticResource StatusBarTextBox}" />
+            <TextBlock
+                Text="{Binding Status, TargetNullValue=Приложение готово к работе, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                Style="{StaticResource StatusBarTextBox}" />
         </StatusBar>
     </Grid>
 </Window>
