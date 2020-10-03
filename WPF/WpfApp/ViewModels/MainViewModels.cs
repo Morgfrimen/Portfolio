@@ -5,8 +5,6 @@ namespace WpfApp.ViewModels
 {
     public sealed class MainViewModels : BaseViewModels
     {
-        private readonly ICommand _loadedMainWindow;
-
         /// <summary>
         ///     Статус происходящей работы
         /// </summary>
@@ -14,8 +12,8 @@ namespace WpfApp.ViewModels
 
         public MainViewModels()
         {
-            _loadedMainWindow = new LoadedMainWindow();
-            _loadedMainWindow.Execute(this);
+            ICommand loadedMainWindow = new LoadedMainWindow();
+            loadedMainWindow.Execute(parameter: this);
         }
 
         /// <summary>
