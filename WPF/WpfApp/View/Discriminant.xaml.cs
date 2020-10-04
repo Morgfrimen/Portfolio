@@ -3,7 +3,7 @@
 namespace WpfApp.View
 {
     /// <summary>
-    ///     Логика взаимодействия для Discriminant.xaml
+    ///     Логика взаимодействия для RunDiscriminantCommand.xaml
     /// </summary>
     public partial class Discriminant : Page
     {

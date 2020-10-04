@@ -3,11 +3,74 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:WpfApp.ViewModels"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800" Background="White"
+      d:DesignHeight="450" d:DesignWidth="800" Background="White" KeepAlive="True"
       Title="Квадратные уравнения">
+    <Page.DataContext>
+        <vm:DiscriminantViewModels x:Name="ViewModels" />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style TargetType="FrameworkElement" x:Key="StyleTextControl">
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="5,0" />
+        </Style>
+        <Style TargetType="TextBoxBase" x:Key="TextBoxControl" BasedOn="{StaticResource StyleTextControl}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle" BasedOn="{StaticResource StyleTextControl}">
+            <Setter Property="TextAlignment" Value="Right" />
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonStyle" BasedOn="{StaticResource StyleTextControl}">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+    </Page.Resources>
 
     <Grid>
-        <TextBlock Text="TODO: Прикрутить библиотеку с расчетом квадратных уравнений" />
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.9*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+
+        <UniformGrid Columns="4" x:Name="UniformGridTop">
+            <UniformGrid Columns="2">
+                <TextBlock Text="Коэффициент A: " Style="{StaticResource TextBlockStyle}" />
+                <TextBox Style="{StaticResource TextBoxControl}" Text="{Binding A,UpdateSourceTrigger=PropertyChanged}" />
+            </UniformGrid>
+
+            <UniformGrid Columns="2">
+                <TextBlock Text="Коэффициент B: " Style="{StaticResource TextBlockStyle}" />
+                <TextBox Style="{StaticResource TextBoxControl}" Text="{Binding B,UpdateSourceTrigger=PropertyChanged}" />
+            </UniformGrid>
+
+            <UniformGrid Columns="2">
+                <TextBlock Text="Коэффициент C: " Style="{StaticResource TextBlockStyle}" />
+                <TextBox Style="{StaticResource TextBoxControl}" Text="{Binding C,UpdateSourceTrigger=PropertyChanged}" />
+            </UniformGrid>
+
+            <UniformGrid Columns="2">
+                <TextBlock Text=" = " Style="{StaticResource TextBlockStyle}" />
+                <TextBox Style="{StaticResource TextBoxControl}"
+                         Text="{Binding Result,UpdateSourceTrigger=PropertyChanged}" />
+            </UniformGrid>
+
+        </UniformGrid>
+        <Button Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource ButtonStyle}"
+                Command="{Binding RunDiscriminantCommand}"
+                CommandParameter="{Binding ElementName=ViewModels}"
+                Content="{Binding ContentButtonRunDiscriminant,UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock Grid.Row="2" TextWrapping="WrapWithOverflow" TextAlignment="Center"
+                   Text="{Binding ResultRun,UpdateSourceTrigger=PropertyChanged}" />
+
     </Grid>
 </Page>

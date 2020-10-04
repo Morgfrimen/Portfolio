@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:WpfApp.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="800">
+        Title="MainWindow" MinHeight="450" MinWidth="1200">
 
     <Window.DataContext>
         <vm:MainViewModels />
@@ -47,7 +47,7 @@
                 </TreeViewItem>
             </TreeView>
 
-            <Frame x:Name="FrameMainWindow" Grid.Column="1">
+            <Frame x:Name="FrameMainWindow" Grid.Column="1" NavigationUIVisibility="Hidden">
                 <Frame.Content>
                     <view:DefaultPageMainFrame />
                 </Frame.Content>

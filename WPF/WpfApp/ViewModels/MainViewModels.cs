@@ -14,7 +14,7 @@ namespace WpfApp.ViewModels
         {
             ICommand loadedMainWindow = new LoadedMainWindow();
             loadedMainWindow.Execute(parameter: this);
-            PageDiscriminant = new NavigatePageDiscriminant(discriminant: Discriminant1);
+            PageDiscriminant = new NavigatePageDiscriminant();
         }
 
         /// <summary>

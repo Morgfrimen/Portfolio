@@ -14,9 +14,9 @@ namespace WpfApp.Command
 
         public async void Execute(object parameter)
         {
-            if (!(parameter is MainViewModels mainVm))
-                throw new ArgumentNullException(paramName: nameof(mainVm));
-
+            if (parameter is not MainViewModels)
+                throw new ArgumentNullException(paramName: nameof(MainViewModels));
+            MainViewModels mainVm = (MainViewModels) parameter;
             await Task.Run
             (
                 action: async () =>

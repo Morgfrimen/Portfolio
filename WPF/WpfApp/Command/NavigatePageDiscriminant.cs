@@ -8,13 +8,12 @@ namespace WpfApp.Command
 {
     public sealed class NavigatePageDiscriminant : ICommand
     {
+        private readonly bool _canExecute;
         private readonly Discriminant _discriminant;
 
-        private readonly bool _canExecute;
-
-        public NavigatePageDiscriminant(Discriminant discriminant)
+        public NavigatePageDiscriminant()
         {
-            _discriminant = discriminant;
+            _discriminant = new Discriminant();
             _canExecute = true;
         }
 
