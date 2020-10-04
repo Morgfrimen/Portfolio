@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using WpfApp.Command;
+using WpfApp.View;
 
 namespace WpfApp.ViewModels
 {
@@ -14,7 +15,7 @@ namespace WpfApp.ViewModels
         {
             ICommand loadedMainWindow = new LoadedMainWindow();
             loadedMainWindow.Execute(parameter: this);
-            PageDiscriminant = new NavigatePageDiscriminant();
+            PageDiscriminant = new NavigatePageDiscriminant(Discriminant1, DefaultPage);
         }
 
         /// <summary>

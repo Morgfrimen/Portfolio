@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:WpfApp.ViewModels"
+        xmlns:view="clr-namespace:WpfApp.View"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="800">
@@ -30,7 +31,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="0.1*" MinWidth="200" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -39,11 +40,18 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction
-                                Command="{Binding PageDiscriminant}" />
+                                Command="{Binding PageDiscriminant}" 
+                                CommandParameter="{Binding ElementName=FrameMainWindow}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TreeViewItem>
             </TreeView>
+
+            <Frame x:Name="FrameMainWindow" Grid.Column="1" >
+                <Frame.Content>
+                    <view:DefaultPageMainFrame />
+                </Frame.Content>
+            </Frame>
 
         </Grid>
 
