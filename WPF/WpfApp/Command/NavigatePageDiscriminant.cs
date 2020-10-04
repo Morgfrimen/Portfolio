@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
-using WpfApp.Models.Navigate;
 using WpfApp.View;
 
 namespace WpfApp.Command
@@ -10,14 +9,12 @@ namespace WpfApp.Command
     public sealed class NavigatePageDiscriminant : ICommand
     {
         private readonly Discriminant _discriminant;
-        private readonly DiscriminantCustomContentState _discriminantCustomContentState;
 
-        private bool _canExecute;
+        private readonly bool _canExecute;
 
-        public NavigatePageDiscriminant(Discriminant discriminant,DefaultPageMainFrame defaultPageMainFrame)
+        public NavigatePageDiscriminant(Discriminant discriminant)
         {
             _discriminant = discriminant;
-            _discriminantCustomContentState = new DiscriminantCustomContentState(_discriminant, defaultPageMainFrame);
             _canExecute = true;
         }
 
@@ -31,8 +28,7 @@ namespace WpfApp.Command
             Frame frame = parameter as Frame ?? throw new InvalidOperationException();
 
             NavigationService nav = frame.NavigationService;
-            _discriminantCustomContentState.Replay(nav, NavigationMode.New);
-
+            nav.Navigate(root: _discriminant, navigationState: "Квадратные уравнения!");
         }
 
         public event EventHandler CanExecuteChanged;

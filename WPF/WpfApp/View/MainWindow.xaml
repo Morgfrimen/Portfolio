@@ -40,14 +40,14 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseDown">
                             <i:InvokeCommandAction
-                                Command="{Binding PageDiscriminant}" 
-                                CommandParameter="{Binding ElementName=FrameMainWindow}"/>
+                                Command="{Binding PageDiscriminant}"
+                                CommandParameter="{Binding ElementName=FrameMainWindow}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TreeViewItem>
             </TreeView>
 
-            <Frame x:Name="FrameMainWindow" Grid.Column="1" >
+            <Frame x:Name="FrameMainWindow" Grid.Column="1">
                 <Frame.Content>
                     <view:DefaultPageMainFrame />
                 </Frame.Content>
